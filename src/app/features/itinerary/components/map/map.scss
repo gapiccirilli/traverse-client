@@ -1,0 +1,12 @@
+@use '../../../../../mixins' as *;
+
+.map-container {
+    @include fillDimensions();
+    position: relative;
+}
+
+.map {
+    @include fillDimensions();
+    position: relative;
+    z-index: 0;
+}

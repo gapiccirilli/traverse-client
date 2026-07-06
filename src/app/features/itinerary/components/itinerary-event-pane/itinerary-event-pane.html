@@ -1,0 +1,20 @@
+<div class="event-pane-container">
+    <div class="event-pane-header-container">
+        <h3>Events</h3>
+    </div>
+    <div class="event-pane-list-container">
+        <ul class="event-pane-list">
+            @for(event of events(); track event.id) {
+                <li (click)="selectCoordinate(event)">
+                    <div>
+                        <span>{{ event.eventName }}</span>
+                    </div>
+                    <div>
+                        <span>{{ event.location}}</span>
+                        <span>{{ event.eventDate | date:'fullDate'}}</span>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

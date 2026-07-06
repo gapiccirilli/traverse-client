@@ -1,0 +1,32 @@
+<div class="event-modal-container" 
+     [ngStyle]="{left: `${currentPos()?.x}px`, top: `${currentPos()?.y}px`, width: `${dimensions.width}rem`, height: `${dimensions.height}rem`}">
+    <div class="event-modal-relative-container">    
+        <span class="material-symbols-outlined" (click)="onCloseModal()">
+            close
+        </span>
+
+        <div class="event-name-container">
+            <label>Event Name</label>
+            <input type="text" [(ngModel)]="currentEvent.eventName"  />
+        </div>
+
+        <div class="event-location-container">
+            <label>Location</label>
+            <button name="l-drpdwn"></button>
+        </div>
+
+        <div class="event-date-container">
+            <label>Date</label>
+            <input type="date" [(ngModel)]="currentEvent.eventDate" />
+        </div>
+
+        <div class="event-duration-container">
+            <label>Duration (Hours)</label>
+            <input class="duration-input" type="number" min="0" step="0.5" [(ngModel)]="currentEvent.duration" />
+        </div>
+
+        <div>
+            <button class="event-create-btn" (click)="onCreate()">Create</button>
+        </div>
+    </div>
+</div>

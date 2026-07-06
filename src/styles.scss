@@ -1,0 +1,22 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.stop-marker-inner {
+  width: 24px;
+  height: 24px;
+  background: rgba(53, 186, 64, 1);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  @include flex($justify: center, $align: center);
+
+  span {
+    transform: rotate(45deg);
+  }
+}

@@ -1,0 +1,54 @@
+@use '../../../../../variables' as *;
+@use '../../../../../mixins' as *;
+
+$input-width: 85%;
+$input-height: 1.8rem;
+
+.event-modal-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    border-radius: 1rem;
+    background-color: $color-theme-3-navy-3;
+    color: $color-theme-text;
+    padding: 1rem;
+    font-family: $font-family-1;
+    font-size: 0.8rem;
+    @include flex($direction: column, $gap: 0.8rem);
+
+    div {
+        width: 100%;
+        @include flex($direction: column, $gap: 0.5rem);
+    
+        input, button {
+            @include inputBase($width: $input-width, $height: $input-height);
+        }
+
+        button[name=l-drpdwn] {
+            background-color: white;
+            cursor: pointer;
+        }
+    }
+}
+
+.event-modal-relative-container {
+    position: relative;
+}
+
+.event-create-btn {
+    background-color: $color-theme-1-green;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.material-symbols-outlined {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color-theme-text;
+    }
+}
