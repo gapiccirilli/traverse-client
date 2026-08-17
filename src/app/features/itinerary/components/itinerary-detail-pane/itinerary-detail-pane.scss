@@ -1,0 +1,19 @@
+@use '../../../../../mixins' as *;
+@use '../../../../../variables' as *;
+
+$detail-pane-header-height: 3rem;
+$detail-pane-padding-side: 1rem;
+$detail-pane-padding-top: 0.5rem;
+
+// .detail-pane-header-container {
+//     width: 100%;
+//     height: $detail-pane-header-height;
+//     box-sizing: border-box;
+//     border-bottom: 2px solid $border-color1;
+//     padding-top: $detail-pane-padding-top;
+//     padding-left: $detail-pane-padding-side;
+
+//     h3 {
+//         @include header1();
+//     }
+// }

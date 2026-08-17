@@ -1,11 +1,11 @@
-<div class="event-pane-container">
+<section class="event-pane-container">
     <div class="event-pane-header-container">
         <h3>Events</h3>
     </div>
     <div class="event-pane-list-container">
         <ul class="event-pane-list">
             @for(event of events(); track event.id) {
-                <li (click)="selectCoordinate(event)">
+                <li (click)="selectCoordinate(event)" [class.event-active]="selectedEvent()?.id === event.id">
                     <div>
                         <span>{{ event.eventName }}</span>
                     </div>
@@ -17,4 +17,4 @@
             }
         </ul>
     </div>
-</div>
+</section>

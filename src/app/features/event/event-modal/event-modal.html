@@ -12,7 +12,8 @@
 
         <div class="event-location-container">
             <label>Location</label>
-            <button name="l-drpdwn"></button>
+            <!-- <button name="l-drpdwn"></button> -->
+            <input type="text" disabled="true" [value]="this.displayLocation()!.properties.fullAddress" />
         </div>
 
         <div class="event-date-container">

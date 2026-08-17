@@ -66,3 +66,7 @@ $event-pane-padding-top: 0.5rem;
         }
     }
 }
+
+.event-active {
+    background-color: $hover-color;
+}

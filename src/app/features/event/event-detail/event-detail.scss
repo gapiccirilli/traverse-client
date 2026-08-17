@@ -1,0 +1,31 @@
+@use '../../../../mixins' as *;
+@use '../../../../variables' as *;
+
+.event-detail-container {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @include flex($direction: column, $gap: 2rem);
+}
+
+.event-detail-field-container {
+    width: 100%;
+    @include flex();
+
+    div {
+        width: 50%;
+
+        p:first-of-type {
+            font-family: $font-family-1;
+            font-size: 0.9rem;
+        }
+
+        p:last-of-type {
+            font-family: $font-family-1;
+            font-size: 0.8rem;
+        }
+    }
+
+}

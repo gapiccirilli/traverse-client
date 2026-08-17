@@ -3,7 +3,8 @@ import * as L from 'leaflet';
 import { EventService } from '../../../../core/services/event-service';
 import { Coordinate } from '../../../../shared/types/coordinate.type';
 import { Event } from '../../../../shared/models/event.model';
-import { EventModal } from "../event-modal/event-modal";
+import { EventModal } from "../../../event/event-modal/event-modal";
+import { MapService } from '../../../../core/services/map-service';
 
 @Component({
   selector: 'traverse-map',
@@ -14,7 +15,8 @@ import { EventModal } from "../event-modal/event-modal";
 export class Map {
   public mapContainer = viewChild<ElementRef>('mapContainer');
   public map!: L.Map;
-  public events = signal<Event[]>([]);
+  public events = computed(() => this._eventService.events());
+  public locations = computed(() => this._mapService.locations());
   public eventModalIsOpen = signal<boolean>(false);
   public eventModalPos = signal<{ x: number, y: number }>({ x: 0, y: 0 });
   public markerCoords = computed(() => { 
@@ -31,13 +33,29 @@ export class Map {
   private static readonly _SPACE_FROM_MARKER = 10;
 
   private _eventService = inject(EventService);
+  private _mapService = inject(MapService);
 
-  constructor() { 
+  constructor() {
+
     effect(() => {
-      const coorinate = this._eventService.selectedEvent()?.coordinates;
+      const eventsLen = this.events().length;
+
+      if (eventsLen > 0) {
+        const firstEvent = this.events()[0];
+        this._eventService.selectEvent(firstEvent);
+        this.setMapView(firstEvent.coordinates);
+      }
+    });
+
+    effect(() => {
+      const coordinate = this._eventService.selectedEvent()?.coordinates;
 
       if (!this.map) return;
-      this.setMapView(coorinate ?? { latitude: 0, longitude: 0 });
+      this.setMapView(coordinate ?? { latitude: 0, longitude: 0 });
+    });
+
+    effect(() => {
+      this.initMapMarkers();
     });
 
     this._eventService.eventsSubject$.subscribe({
@@ -51,22 +69,10 @@ export class Map {
     });
   }
 
-  ngOnInit() {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      this._startingPos = pos;
-      this.map.setView([this._startingPos.coords.latitude, this._startingPos.coords.longitude], 13);
-      this.map.doubleClickZoom.disable()
-
-      console.log(this._newMarker()?.getLatLng());
-    });
-  }
 
   ngAfterViewInit(): void {
     this.initMap();
     this.map.on('dblclick', (e) => this.addEvent(e));
-
-    this.events.set(this._eventService.events());
-    this.initMapMarkers();
   }
 
   public setModalPosition(point: { x: number, y: number }) {
@@ -95,6 +101,7 @@ export class Map {
     
     this.openModal(true);
     this.setModalPosition(adjustedPoint);
+    
   }
 
   public addMarker(coordinate: Coordinate, eventDetails?: { id?: number, order?: number }): void {
@@ -112,7 +119,7 @@ export class Map {
     this._markers.push(marker);
 
     marker.on('contextmenu', (e) => {
-      console.log(e);
+
      });
   }
 
@@ -125,6 +132,7 @@ export class Map {
     }
     
     this.map = L.map(container).setView([0, 0], 13);
+    this.map.doubleClickZoom.disable();
 
     L.tileLayer('https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png', {
       attribution: '© Stadia Maps © OpenMapTiles © OpenStreetMap'
@@ -153,7 +161,9 @@ export class Map {
   }
 
   private initMapMarkers() {
+
     for (const e of this.events()) {
+
       this.addMarker(e.coordinates, { id: e.id, order: e.userDefinedOrder });
     }
   }

@@ -1,0 +1,28 @@
+<section class="event-detail-container">
+    <div class="event-detail-field-container">
+        <div>
+            <p>Event</p>
+            <p>{{ event()?.eventName }}</p>
+        </div>
+        <div>
+            <p>Location</p>
+            <p>{{ event()?.location }}</p>
+        </div>
+    </div>
+    <div class="event-detail-field-container">
+        <div>
+            <p>Coordinates</p>
+            <p>{{ event()?.coordinates | coordinate }}</p>
+        </div>
+        <div>
+            <p>Date</p>
+            <p>{{ event()?.eventDate | date:'fullDate' }}</p>
+        </div>
+    </div>
+    <div class="event-detail-field-container">
+        <div>
+            <p>Order</p>
+            <p>{{ event()?.userDefinedOrder }}</p>
+        </div>
+    </div>
+</section>
