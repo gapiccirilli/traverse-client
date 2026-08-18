@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { EventDetail } from '../../../event/event-detail/event-detail';
+import { EventDetail } from '../../../event/components/event-detail/event-detail';
 import { EventService } from '../../../../core/services/event-service';
 
 @Component({

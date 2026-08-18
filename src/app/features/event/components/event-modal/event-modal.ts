@@ -1,8 +1,8 @@
 import { Component, computed, effect, inject, input, output, signal, SimpleChange } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Event } from '../../../shared/models/event.model';
+import { Event } from '../../../../shared/models/event.model';
 import { FormsModule } from '@angular/forms';
-import { MapService } from '../../../core/services/map-service';
+import { MapService } from '../../../../core/services/map-service';
 
 @Component({
   selector: 'traverse-event-modal',

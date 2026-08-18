@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { Event } from '../../../shared/models/event.model';
-import { CoordinatePipe } from "../../../shared/pipes/coordinate.pipe";
+import { Event } from '../../../../shared/models/event.model';
+import { CoordinatePipe } from "../../../../shared/pipes/coordinate.pipe";
 import { DatePipe } from '@angular/common';
 
 @Component({

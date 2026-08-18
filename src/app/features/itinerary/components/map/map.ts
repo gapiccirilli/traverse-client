@@ -3,7 +3,7 @@ import * as L from 'leaflet';
 import { EventService } from '../../../../core/services/event-service';
 import { Coordinate } from '../../../../shared/types/coordinate.type';
 import { Event } from '../../../../shared/models/event.model';
-import { EventModal } from "../../../event/event-modal/event-modal";
+import { EventModal } from "../../../event/components/event-modal/event-modal";
 import { MapService } from '../../../../core/services/map-service';
 
 @Component({
